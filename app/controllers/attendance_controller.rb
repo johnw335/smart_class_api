@@ -8,6 +8,7 @@ class AttendanceController < ApplicationController
     if @student != nil
       puts "There was student data passed here"
      render :json => "200"
+   end
   end
 
 end
