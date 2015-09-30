@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150930180248) do
   create_table "questions", force: :cascade do |t|
     t.string   "body"
     t.integer  "teacher_id"
+    t.integer  "classname_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
