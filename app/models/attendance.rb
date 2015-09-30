@@ -1,5 +1,6 @@
 class Attendance < ActiveRecord::Base
   belongs_to :student
-  belongs_to :class
+  belongs_to :classname
+  has_many :questions
 
 end
