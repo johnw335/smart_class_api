@@ -5,6 +5,8 @@ class AttendanceController < ApplicationController
   def show
     puts "I made it here"
     @student = params[:student]
+    # @myClass = params[:myClass]
+    # Attendance.create! = [:student = @student, :classname = @myClass]
     if @student != nil
       puts "There was student data passed here"
      render :json => "200"
