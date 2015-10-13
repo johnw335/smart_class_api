@@ -3,14 +3,24 @@ class AttendanceController < ApplicationController
 
 
   def show
-    puts "I made it here"
-    @student = params[:student]
-    # @myClass = params[:myClass]
-    # Attendance.create! = [:student = @student, :classname = @myClass]
-    if @student != nil
+    puts params
+
+    @studentEmail = params[:email]
+    @userClass = params[:myClass]
+
+    myStudent = Student.find_by(email: @studentEmail)
+    myClass = Classname.find(@userClass)
+
+    @newAttendance = Attendance.create!(student: myStudent, classname: myClass)
+
+    if @newAttendance != nil
       puts "There was student data passed here"
-     render :json => "200"
+      render :json => "200"
+    else
+      render :json => "404"
    end
+
+
   end
 
 end
