@@ -6,10 +6,13 @@ class AttendanceController < ApplicationController
     puts params
 
     @studentEmail = params[:email]
+    puts "***********"
+    puts @studentEmail
+    puts "***********"
     @userClass = params[:myClass]
 
     myStudent = Student.find_by(email: @studentEmail)
-    myClass = Classname.find(@userClass)
+    myClass = Classname.find_by(name: @userClass)
 
     @newAttendance = Attendance.create!(student: myStudent, classname: myClass)
 
