@@ -17,7 +17,7 @@ class AttendanceController < ApplicationController
       puts "There was student data passed here"
       render :json => "200"
     else
-      render :json => "404"
+      render :json => "No Attendance was created"
    end
 
 

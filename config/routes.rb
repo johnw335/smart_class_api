@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
     get "attendance/:student" => "attendance#show", :defaults => { :format => :json }
 
+    get "attendance/:student" => "attendance#show", :defaults => { :format => :json }
+
 end
