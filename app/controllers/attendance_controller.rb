@@ -17,6 +17,7 @@ class AttendanceController < ApplicationController
       puts "There was student data passed here"
       render :json => "200"
     else
+      puts "I didnt make an attendance for some reason"
       render :json => "Sorry I couldn't make an attendance"
    end
 
