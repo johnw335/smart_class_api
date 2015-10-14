@@ -2,13 +2,15 @@ class AttendanceController < ApplicationController
   protect_from_forgery except: :json_object
 
 
-  def show
+  def create
     p params
     @studentEmail = params[:email]
     puts "***********"
     puts @studentEmail
     puts "***********"
     @userClass = params[:myClass]
+    puts "*****userClass"
+    puts @userClass
 
     myStudent = Student.find_by(email: @studentEmail)
     myClass = Classname.find_by(name: @userClass)
