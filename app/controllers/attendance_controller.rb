@@ -3,8 +3,7 @@ class AttendanceController < ApplicationController
 
 
   def show
-    puts params
-
+    p params
     @studentEmail = params[:email]
     puts "***********"
     puts @studentEmail
@@ -21,6 +20,13 @@ class AttendanceController < ApplicationController
       render :json => "200"
     else
       puts "I didnt make an attendance for some reason"
+      puts "***** student *****"
+      puts myStudent
+      puts "***** student *****"
+      puts "***** class *****"
+      puts myClass
+      puts "***** class *****"
+
       render :json => "Sorry I couldn't make an attendance"
    end
 
