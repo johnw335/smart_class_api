@@ -5,26 +5,27 @@ class AttendanceController < ApplicationController
   def create
     p params
     puts "params email"
+
+
     puts params[:email]
     puts "params class"
     puts params[:myClass]
 
     @studentEmail = params[:email]
-    # puts "***********"
-    # puts @studentEmail
-    # puts "***********"
     @userClass = params[:myClass]
 
 
     myStudent = Student.find_by(email: @studentEmail)
+    puts myStudent
     myClass = Classname.find_by(name: @userClass)
+    puts myClass
 
 
     if myStudent == nil || myClass == nil
       puts "one of those was nil"
       render :json => "Sorry, either class or student is incorrect"
     else
-    @newAttendance = Attendance.create!(student: myStudent, classname: myClass)
+      @newAttendance = Attendance.create!(student: myStudent, classname: myClass)
 
       if @newAttendance != nil
         puts "There was student data passed here"
