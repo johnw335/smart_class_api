@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
     root 'welcome#index'
 
-    get "attendance/create" => "attendance#show", :defaults => { :format => :json }
+    get "attendance/" => "attendance#create", :defaults => { :format => :json }
 
-    post "attendance/create" => "attendance#show", :defaults => { :format => :json }
+    post "attendance/" => "attendance#create", :defaults => { :format => :json }
 end
