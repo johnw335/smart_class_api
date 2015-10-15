@@ -3,15 +3,11 @@ class AttendanceController < ApplicationController
 
 
   def create
-    p params
-    puts "params email"
-    puts params[:email]
-    puts "params class"
-    puts params[:myClass]
     @studentEmail = params[:email]
     @userClass = params[:myClass]
     myStudent = Student.find_by(email: @studentEmail)
     myClass = Classname.find_by(name: @userClass)
+
     if myStudent == nil || myClass == nil
       puts "one of those was nil"
       render :json => "Sorry, either class or student is incorrect"
@@ -23,10 +19,8 @@ class AttendanceController < ApplicationController
         render :json => "200"
       else
         render :json => "Sorry I couldn't make an attendance"
+
      end
    end
-
-
   end
-
 end
