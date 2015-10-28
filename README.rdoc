@@ -1,6 +1,7 @@
 == README
+https://travis-ci.org/johnw335/smart_class_api.svg?branch=master
 
-[Heroku](https://rocky-river-2809.herokuapp.com)
+![Heroku](https://rocky-river-2809.herokuapp.com)
 
 *The primary function of this is to act as an api for the mobile app.
 
