@@ -1,4 +1,4 @@
-class AttendanceController < ApplicationController
+class AttendancesController < ApplicationController
   protect_from_forgery except: :json_object
 
 
@@ -20,7 +20,20 @@ class AttendanceController < ApplicationController
       else
         render :json => "Sorry I couldn't make an attendance"
 
-     end
-   end
+      end
+    end
+
   end
+
+
+  def index
+    @teacher = Teacher.find_by(id: session[:teacher_id])
+    puts @teacher
+    @my_class = Classname.where(teacher: @teacher)
+    @attendances = Attendance.where(classname: @my_class)
+    puts @attendances.count
+  end
+
+
 end
+

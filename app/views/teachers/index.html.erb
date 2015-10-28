@@ -1,0 +1,15 @@
+<h1>Hello Teachers</h1>
+<h1>login page</h1>
+
+<%= form_for :teacher, url: { action: 'login'} do |f| %>
+<br>
+
+<br>
+<%= f.label :email %><br>
+<%= f.text_field :email %>
+<br>
+<%= f.label :password %><br>
+<%= f.password_field :password %>
+<br>
+<%= f.submit 'Login' %>
+<%end%>

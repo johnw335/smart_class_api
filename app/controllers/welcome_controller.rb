@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
-    @attendance = Attendance.all
+    redirect_to teachers_path
   end
 
 end
