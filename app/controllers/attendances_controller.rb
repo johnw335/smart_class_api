@@ -27,10 +27,24 @@ class AttendancesController < ApplicationController
 
 
   def index
+    @students_email_list = []
+    students_list = []
     @teacher = Teacher.find_by(id: session[:teacher_id])
     puts @teacher
     @my_class = Classname.where(teacher: @teacher)
     @attendances = Attendance.where(classname: @my_class)
+    puts @attendances
+    @attendances.each do |t|
+      stud = Student.where(t.student)
+      puts stud
+      puts "******"
+      # @students_email_list << stud.email
+    end
+    # students_list.each do |student|
+    #   stud = Student.where(id: student)
+    #   @student_email_list << stud.email
+    # end
+
     puts @attendances.count
   end
 
