@@ -27,25 +27,23 @@ class AttendancesController < ApplicationController
 
 
   def index
-    @students_email_list = []
+    @today_students = []
     students_list = []
     @teacher = Teacher.find_by(id: session[:teacher_id])
-    puts @teacher
+    # puts @teacher
     @my_class = Classname.where(teacher: @teacher)
     @attendances = Attendance.where(classname: @my_class)
-    puts @attendances
-    @attendances.each do |t|
-      stud = Student.where(t.student)
-      puts stud
-      puts "******"
-      # @students_email_list << stud.email
-    end
-    # students_list.each do |student|
-    #   stud = Student.where(id: student)
-    #   @student_email_list << stud.email
+    # puts @attendances
+    today_day = Time.now.day
+    today_month = Time.now.month
+    # @attendances.each do |attendance|
+    #   puts attendance.created_at.month
     # end
-
-    puts @attendances.count
+    @attendances.each do |attendance|
+      if attendance.created_at.day == today_day and attendance.created_at.month == today_month
+        today_students << attendance
+      end
+    end
   end
 
 
