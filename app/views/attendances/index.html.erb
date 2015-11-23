@@ -11,3 +11,19 @@
     <h3><%=attendance.student.email%></h3>
     <%end%>
   <%end%>
+
+  <script>
+
+  var att_list = []
+  <%@attendances.each do |i|%>
+  att_list.push("<%=i.student.email%>")
+  <%end%>
+
+  console.log(att_list)
+
+  var student_here_today = []
+  <%@today_students.each do |attendance|%>
+  student_here_today.push("<%=attendance.student.email%>")
+  <%end%>
+  console.log(student_here_today)
+  </script>
