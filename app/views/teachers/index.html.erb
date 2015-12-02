@@ -1,15 +1,27 @@
-<h1>Hello Teachers</h1>
-<h1>login page</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<%= form_for :teacher, url: { action: 'login'} do |f| %>
-<br>
+<div id="main-container" class="container-fluid">
+  <div class="row" id='page-wrapper'>
+    <div id="hello" class="col-sm-12">
+      <h1>Hello Teachers</h1>
+    </div>
+  <div class="row" id="login_info">
+    <div class="col-sm-12>">
+      <h3>login page</h3>
+      <%= form_for :teacher, url: { action: 'login'} do |f| %>
+      <br>
 
-<br>
-<%= f.label :email %><br>
-<%= f.text_field :email %>
-<br>
-<%= f.label :password %><br>
-<%= f.password_field :password %>
-<br>
-<%= f.submit 'Login' %>
-<%end%>
+      <br>
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+      <br>
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
+      <br>
+      </br>
+      <%= f.submit 'Login' %>
+      <%end%>
+    </div>
+  </div>
+  </div>
+</div>

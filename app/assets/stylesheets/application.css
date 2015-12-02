@@ -12,11 +12,27 @@
  *
  *= require_tree .
  *= require_self
+
  */
+
+
 #question_text{
   width: 30%;
 }
 
 #question_form{
   margin-bottom: 200px;
+}
+
+#hello{
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: center;
+  background-color: #f4deb7;
+  color: #177a87;
+
+}
+
+#login_info{
+  text-align: center;
 }
