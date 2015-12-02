@@ -37,7 +37,7 @@
 $('#send_question').click(function(e) {
     e.preventDefault();
     var questionText=document.getElementById('question_text').value;
-    var teacherEmail = "<%teacher = Teacher.find_by(id: session[:teacher_id])%><%=teacher.email%>";
+    var teacherEmail = "<%teacher = Teacher.find_by(id: session[:teacher_id])%><%=teacher.email%>"; // This will not be used until we are using a teacher with a valid email address.
     <%if @today_students.count != 0%>
       <%student_here_today.each do |student|%>
           $.ajax({
@@ -48,7 +48,7 @@ $('#send_question').click(function(e) {
               'key': '6_8SWEh4pIoJBixODvpwwg',
 
               'message': {
-                'from_email': 'jww335@gmail.com',
+                'from_email': 'jww335@gmail.com', //This should be set as teacherEmail, but we have to send from valid email address so it will be hard coded for now
                 'from_name' : 'Teacher',
                 'subject': "Today's Question",
                 'text': questionText,
