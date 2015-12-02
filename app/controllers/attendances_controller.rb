@@ -37,7 +37,11 @@ class AttendancesController < ApplicationController
     today_day = Time.now.day
     today_month = Time.now.month
     # @attendances.each do |attendance|
-    #   puts attendance.created_at.month
+    #   if attendance.student
+    #     puts true
+    #   else
+    #     puts attendance.destroy
+    #   end
     # end
     @attendances.each do |attendance|
       if attendance.created_at.day == today_day and attendance.created_at.month == today_month

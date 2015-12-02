@@ -12,6 +12,14 @@
     <%end%>
   <%end%>
 
+<h1>Send an Question to the Students in Class Today</h1>
+  <form id="question_form">
+    Question:<br>
+    <input id="question_text" type="text" name="questionText">
+    <br>
+    <button id="send_question">Send Question</button>
+  </form>
+
   <script>
 
   var att_list = []
@@ -19,11 +27,51 @@
   att_list.push("<%=i.student.email%>")
   <%end%>
 
-  console.log(att_list)
+  // console.log(att_list)
 
   var student_here_today = []
   <%@today_students.each do |attendance|%>
   student_here_today.push("<%=attendance.student.email%>")
   <%end%>
-  console.log(student_here_today)
+  // console.log(student_here_today)
+$('#send_question').click(function(e) {
+    e.preventDefault();
+    var questionText=document.getElementById('question_text').value;
+    var teacherEmail = "<%teacher = Teacher.find_by(id: session[:teacher_id])%><%=teacher.email%>";
+    <%if @today_students.count != 0%>
+      <%student_here_today.each do |student|%>
+          $.ajax({
+
+            type: "POST",
+            url: "https://mandrillapp.com/api/1.0/messages/send.json",
+            data: {
+              'key': '6_8SWEh4pIoJBixODvpwwg',
+
+              'message': {
+                'from_email': 'jww335@gmail.com',
+                'from_name' : 'Teacher',
+                'subject': "Today's Question",
+                'text': questionText,
+                'to': [
+                  {
+                    'email': <%=student.email%>,
+                    'name': 'John',
+                    'type': 'to'
+                  }
+                ],
+              }
+            }
+
+
+        }).done(function(response){
+          console.log(response[0]);
+        });
+    <%end%>
+  <%else%>
+    alert("No Students have logged in today!")
+  <%end%>
+    // alert("send email")
+  });
+
+
   </script>
