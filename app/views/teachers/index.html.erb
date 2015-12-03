@@ -3,25 +3,29 @@
 <div id="main-container" class="container-fluid">
   <div class="row" id='page-wrapper'>
     <div id="hello" class="col-sm-12">
-      <h1>Hello Teachers</h1>
+      <h1 id="hello_text">Hello Teachers</h1>
     </div>
-  <div class="row" id="login_info">
-    <div class="col-sm-12>">
-      <h3>login page</h3>
-      <%= form_for :teacher, url: { action: 'login'} do |f| %>
-      <br>
-
-      <br>
-      <%= f.label :email %><br>
-      <%= f.text_field :email %>
-      <br>
-      <%= f.label :password %><br>
-      <%= f.password_field :password %>
-      <br>
-      </br>
-      <%= f.submit 'Login' %>
-      <%end%>
+    <div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+      <div class="carousel-inner">
+          <div class="item active">
+              <div class="slide1">
+                <div class="row" id="login_info">
+                  <p id="login"> Login Page </p>
+                    <%= form_for :teacher, url: { action: 'login'} do |f| %>
+                      <%= f.text_field :email, :placeholder => "Email"%>
+                    <br>
+                    </br>
+                      <%=f.text_field :password, :placeholder => "Password"%>
+                    <br>
+                    </br>
+                      <%= f.submit 'Login' %>
+                    <%end%>
+                </div>
+              </div>
+          </div>
+        </div>
     </div>
-  </div>
+    <div id="footer" class="row">
+    </div>
   </div>
 </div>

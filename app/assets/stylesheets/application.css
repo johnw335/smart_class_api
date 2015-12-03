@@ -15,7 +15,9 @@
 
  */
 
-
+#main-container{
+  font-family: "Courier New";
+}
 #question_text{
   width: 30%;
 }
@@ -25,14 +27,44 @@
 }
 
 #hello{
-  padding-top: 3%;
-  padding-bottom: 3%;
-  text-align: center;
-  background-color: #f4deb7;
-  color: #177a87;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: #437C9E;
+}
 
+#hello_text{
+  color:white;
+  margin-left: 2%;
+  font-size: 4em;
 }
 
 #login_info{
+  margin-left: 3%;
+  font-size: 1.5em;
+  color: black;
+  background-color: #f4deb7;
+  opacity: .9;
+  width: 25%;
   text-align: center;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  border-radius: 15px;
+}
+
+#login{
+  font-size: 2em;
+}
+
+.slide1{
+  background-image: url('http://www.topteachingjobs.com/wp-content/uploads/2015/08/uchenaya.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 500px;
+  color: white;
+  padding-top: 10%;
+}
+
+#footer{
+  height: 60px;
+  background-color:#437C9E;
 }
