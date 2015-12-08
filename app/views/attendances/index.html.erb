@@ -1,3 +1,8 @@
+
+<!--    ***********************************************
+        ** John's Initial HTML Code:
+        ***********************************************
+
 <div id="main-container" class="container-fluid">
   <h1>Attendance Index</h1>
   <%@attendances.each do |attendance| %>
@@ -13,13 +18,61 @@
       <%end%>
     <%end%>
 
-  <h1>Send an Question to the Students in Class Today</h1>
+    <h1>Send an Question to the Students in Class Today</h1>
     <form id="question_form">
-      Question:<br>
-      <input id="question_text" type="text" name="questionText">
-      <br>
-      <button id="send_question">Send Question</button>
+        Question:<br>
+        <input id="question_text" type="text" name="questionText">
+        <br>
+        <button id="send_question">Send Question</button>
     </form>
+
+        ***********************************************
+        **
+        *********************************************** -->
+
+<div class="navvy">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <img class="kaggleLogo" src="./noun_94142_cc.png"> -->
+                <span class="header"> Welcome teacher </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="numbers_container">
+    <div id ="numbers" class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="header"> Enter participation question for students </span>
+                <!-- <textarea class="form-control" rows="3"></textarea> -->
+                <form id="question_form">
+                    <input type="text" class="form-control" id="question_text" placeholder="Enter your question here" name="questionText">
+                    <br>
+                    <button id="send_question" class="btn btn-default">Send Question</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <span class="headerTwo">Absent</h1>
+            <div id="absent"></div>
+        </div>
+        <div class="col-lg-4">
+            <span class="headerTwo">Attending</h1>
+            <div id="attending"></div>
+        </div>
+        <div class="col-lg-4">
+            <div id="donutchart" style="width: 450px; height: 500px;"></div>
+        </div>
+    </div>
+</div>
 
     <script>
 
@@ -27,14 +80,145 @@
     <%@attendances.each do |i|%>
     att_list.push("<%=i.student.email%>")
     <%end%>
-
-    // console.log(att_list)
+    console.log(att_list)
 
     var student_here_today = []
     <%@today_students.each do |attendance|%>
     student_here_today.push("<%=attendance.student.email%>")
     <%end%>
-    // console.log(student_here_today)
+    console.log(student_here_today)
+
+    // ---------------------------------------------------------
+    var allStudents = []
+    <%@attendances.each do |i|%>
+    allStudents.push("<%=i.student.email%>")
+    <%end%>
+    console.log(allStudents)
+
+    var checkedInstudents = []
+    <%@today_students.each do |attendance|%>
+    checkedInstudents.push("<%=attendance.student.email%>")
+    <%end%>
+    console.log(checkedInstudents)
+
+    // ---------------------------------------------------------
+    // Dan's Code / Visuals
+    // ---------------------------------------------------------
+
+    /*
+    var allStudents = [
+        {name: "Dan Feusse"},
+        {name: "John Williams"},
+        {name: "Daria Werbowy"},
+        {name: "Emma Watson"},
+        {name: "Anna Kournikova"},
+        {name: "Michael Kelso"},
+        {name: "Marissa Cooper"},
+        {name: "Jerry Seinfeld"},
+        {name: "George Costanza"}
+    ];
+
+    var checkedInstudents = [
+        {name: "Dan Feusse"},
+        {name: "John Williams"},
+        {name: "Daria Werbowy"},
+        {name: "Emma Watson"},
+        {name: "Anna Kournikova"}
+    ];
+
+
+    var checkedInstudentsPone = _.pluck(checkedInstudents, "name")
+
+    var absentStudents = _.difference(_.pluck(allStudents, "name"), _.pluck(checkedInstudents,"name"));
+    console.log(absentStudents);
+    */
+
+    var checkedInstudentsPone = checkedInstudents;
+    var absentStudents = _.difference(allStudents, checkedInstudents);
+    console.log(checkedInstudentsPone);
+    console.log(absentStudents);
+
+
+    googleChart();
+    peopleVis("#attending", checkedInstudentsPone);
+    peopleVis("#absent", absentStudents);
+
+    function peopleVis(div, data) {
+        var margin = {top: 0, right: 20, bottom: 30, left: 0},
+            width = 390 - margin.left - margin.right,
+            height = 800 - margin.top - margin.bottom;
+
+        //var x = d3.time.scale()
+        //    .range([0, width]);
+
+        var y = d3.scale.linear()
+            .range([height, 0]);
+
+        var svg = d3.select(div).append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        //x.domain(d3.extent(data, function(d) { return d.date; }));
+        y.domain(d3.extent(data, function(d) { return d.close; }));
+
+        var text = svg.selectAll("text.title")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "title")
+            .text(function(d) {
+                return d;
+            })
+            .attr("x", 40)
+            .attr("y", function(d,i) {
+                return i * 60 + 50;
+            });
+
+        // -------------------------
+
+        var iconDimension = 16;
+
+        var dahria = svg.selectAll("text.dah")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "dah")
+            .text(function(d) { return '\uf183' })
+            .attr("x", 0)//100 - (iconDimension*2.5))
+            .attr("y", function(d,i) {
+                return i * 60 + 50 + 7;
+            })
+            .attr('font-family', 'FontAwesome');
+    }
+
+    function googleChart() {
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Students', 'Attendance'],
+                ['Attending', checkedInstudentsPone.length],
+                ['Absent', absentStudents.length]
+            ]);
+
+            var options = {
+                title: 'Absences',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    }
+
+    // ---------------------------------------------------------
+    // 
+    // ---------------------------------------------------------
+
+
+
   $('#send_question').click(function(e) {
       e.preventDefault();
       var questionText=document.getElementById('question_text').value;
