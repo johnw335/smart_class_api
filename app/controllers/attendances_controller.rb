@@ -27,15 +27,29 @@ class AttendancesController < ApplicationController
 
 
   def index
+
+
     @today_students = []
     students_list = []
     @teacher = Teacher.find_by(id: session[:teacher_id])
-    # puts @teacher
-    @my_class = Classname.where(teacher: @teacher)
-    @attendances = Attendance.where(classname: @my_class)
-    # puts @attendances
+    my_class = Classname.where(teacher: @teacher)
+
+    # todayS = Student.find_by(email: "jww335@yahoo.com")
+    # if todayS
+    #   Attendance.create!(student: todayS, classname: my_class[0])
+    # else
+    #   myStudent = Student.create!(email: "jww335@yahoo.com", password: "password")
+    #   Attendance.create!(student: myStudent, classname: my_class[0])
+    # end
+
+
+    # Attendance.create!(student: myStudent, classname: my_class)
+    @attendances = Attendance.where(classname: my_class[0])
     today_day = Time.now.day
     today_month = Time.now.month
+
+
+
     # @attendances.each do |attendance|
     #   if attendance.student
     #     puts true
@@ -45,9 +59,11 @@ class AttendancesController < ApplicationController
     # end
     @attendances.each do |attendance|
       if attendance.created_at.day == today_day and attendance.created_at.month == today_month
-        today_students << attendance
+        @today_students << attendance
+        puts @today_students.last.student.email
       end
     end
+
   end
 
 
