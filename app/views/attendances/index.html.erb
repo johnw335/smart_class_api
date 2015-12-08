@@ -75,7 +75,7 @@
 </div>
 
     <script>
-
+/*
     var att_list = []
     <%@attendances.each do |i|%>
     att_list.push("<%=i.student.email%>")
@@ -87,7 +87,7 @@
     student_here_today.push("<%=attendance.student.email%>")
     <%end%>
     console.log(student_here_today)
-
+*/
     // ---------------------------------------------------------
     var allStudents = []
     <%@attendances.each do |i|%>
@@ -219,12 +219,23 @@
 
 
 
+    // var students_here_today_js = []
+    // <%@today_students.each do |attendance|%>
+    // students_here_today_js.push("<%=attendance.student.email%>")
+    // <%end%>
+    // <%students_here_today_rb = []%>
+    // for(var i = 0; i < students_here_today_js.length; i++){
+    //   console.log(students_here_today_js[i])
+    // }
+
+
   $('#send_question').click(function(e) {
       e.preventDefault();
       var questionText=document.getElementById('question_text').value;
       var teacherEmail = "<%teacher = Teacher.find_by(id: session[:teacher_id])%><%=teacher.email%>"; // This will not be used until we are using a teacher with a valid email address.
+      // alert(student_here_today.count)
       <%if @today_students.count != 0%>
-        <%student_here_today.each do |student|%>
+        <%@today_students.each do |attendance|%>
             $.ajax({
 
               type: "POST",
@@ -239,7 +250,7 @@
                   'text': questionText,
                   'to': [
                     {
-                      'email': <%=student.email%>,
+                      'email': '<%=attendance.student.email%>',
                       'name': 'John',
                       'type': 'to'
                     }
