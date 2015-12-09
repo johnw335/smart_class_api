@@ -36,6 +36,7 @@
             <div class="col-lg-12">
                 <!-- <img class="kaggleLogo" src="./noun_94142_cc.png"> -->
                 <span class="header"> Welcome teacher </span>
+                <button id="logoutButton"><%= link_to "logout", teachers_path %></button>
             </div>
         </div>
     </div>
@@ -146,7 +147,7 @@
     function peopleVis(div, data) {
         var margin = {top: 0, right: 20, bottom: 30, left: 0},
             width = 390 - margin.left - margin.right,
-            height = 800 - margin.top - margin.bottom;
+            height = 910 - margin.top - margin.bottom;
 
         //var x = d3.time.scale()
         //    .range([0, width]);
@@ -214,7 +215,7 @@
     }
 
     // ---------------------------------------------------------
-    // 
+    //
     // ---------------------------------------------------------
 
 
@@ -261,6 +262,7 @@
 
           }).done(function(response){
             console.log(response[0]);
+            document.getElementById('question_text').value = "";
           });
       <%end%>
     <%else%>

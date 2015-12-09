@@ -71,14 +71,14 @@
   background-color:#437C9E;
 }
 
-/* 
+/*
 ---------------------------------------------------------
 ---- Dan's CSS
 ---------------------------------------------------------
 */
 
 .title {
-    font-size: 30px;
+    font-size: .4em;
 }
 .dah {
     font-size: 50px;
@@ -127,4 +127,12 @@
 }
 .col-lg-4 {
   overflow:hidden;
+}
+
+#logoutButton{
+  margin-left: 50%;
+  border-radius: 10px;
+  background-color: white;
+  width: 10%;
+  margin-bottom: 50px;
 }
