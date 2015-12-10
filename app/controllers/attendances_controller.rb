@@ -8,11 +8,15 @@ class AttendancesController < ApplicationController
     myStudent = Student.find_by(email: @studentEmail)
     myClass = Classname.find_by(name: @userClass)
 
+    # Attendance.create!(student: myStudent, classname: myClass)
+
     if myStudent == nil || myClass == nil
       puts "one of those was nil"
       render :json => "Sorry, either class or student is incorrect"
     else
       @newAttendance = Attendance.create!(student: myStudent, classname: myClass)
+      puts "I created a new attendance"
+      puts @newAttendance.inspect
 
       if @newAttendance != nil
         puts "There was student data passed here"
@@ -22,7 +26,7 @@ class AttendancesController < ApplicationController
 
       end
     end
-
+    puts
   end
 
 
@@ -63,6 +67,8 @@ class AttendancesController < ApplicationController
         puts @today_students.last.student.email
       end
     end
+
+    puts
 
   end
 
