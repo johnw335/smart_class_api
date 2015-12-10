@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
   protect_from_forgery except: :json_object
 
+  puts "I made it here"
 
   def create
     @studentEmail = params[:email]
