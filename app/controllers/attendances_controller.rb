@@ -7,6 +7,7 @@ class AttendancesController < ApplicationController
     @userClass = params[:myClass]
     myStudent = Student.find_by(email: @studentEmail)
     myClass = Classname.find_by(name: @userClass)
+    puts "I made it to create!!!!!!!"
 
     # Attendance.create!(student: myStudent, classname: myClass)
 
